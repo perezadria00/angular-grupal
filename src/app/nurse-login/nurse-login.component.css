@@ -1,0 +1,95 @@
+/* Asegura que todo tenga box-sizing correcto */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Aplica estilos globales para el contenedor */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Altura completa de la ventana */
+  background-color: #f4f4f4; /* Fondo gris claro */
+  font-family: Arial, sans-serif;
+}
+
+/* Estilos del contenedor del formulario */
+.form-box {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+/* Estilos internos del formulario */
+.form {
+  text-align: center;
+}
+
+/* Título del formulario */
+h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Estilo de los labels (en negrita) */
+label {
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Placeholder en campos de entrada */
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  color: #aaa;
+}
+
+/* Estilos del botón */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4caf50; /* Verde */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilo cuando el botón es hover */
+button:hover {
+  background-color: #45a049; /* Verde más oscuro */
+}
+
+/* Estilos para el mensaje */
+#message {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#message {
+  color: #f44336; /* Rojo para el mensaje de error */
+}
+
+#message.success {
+  color: #4caf50; /* Verde para el mensaje de éxito */
+}

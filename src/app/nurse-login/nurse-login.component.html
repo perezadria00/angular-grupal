@@ -1,0 +1,26 @@
+<div class="form-box">
+  <form class="form" (submit)="handleLogin($event)">
+    <h1>LOGIN VALIDATION</h1>
+
+    <label for="username">Username:</label><br /><br />
+    <input
+      type="text"
+      name="username"
+      id="username"
+      placeholder="Insert your username here..."
+    /><br /><br />
+
+    <label for="password">Password:</label><br /><br />
+    <input
+      type="password"
+      name="password"
+      id="password"
+      placeholder="Insert your password here..."
+    /><br /><br />
+
+
+    <button type="submit">Login</button>
+  </form>
+
+  <div id="message"></div>
+</div>
