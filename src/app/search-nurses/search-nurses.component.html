@@ -1,0 +1,28 @@
+<div class="search-container">
+    <h2>Búsqueda de Enfermeros</h2>
+    <form (submit)="buscarEnfermeros()" class="search-form">
+      <input
+        type="text"
+        [(ngModel)]="nombre"
+        name="nombre"
+        placeholder="Introduce el nombre del enfermero"
+        class="search-input"
+      />
+      <button type="submit" class="search-button">Buscar</button>
+    </form>
+  
+    <div *ngIf="resultados.length > 0" class="resultados">
+      <h3>Resultados</h3>
+      <ul>
+        <li *ngFor="let enfermero of resultados">
+          <strong>Nombre:</strong> {{ enfermero.nombre }} <br />
+          <strong>Departamento:</strong> {{ enfermero.departamento }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="resultados.length === 0 && hasSearched" class="error">
+      <p>No se encontraron resultados.</p>
+    </div>
+  </div>
+  
