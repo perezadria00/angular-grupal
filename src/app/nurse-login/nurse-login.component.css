@@ -79,17 +79,24 @@ button:hover {
   background-color: #45a049; /* Verde más oscuro */
 }
 
-/* Estilos para el mensaje */
-#message {
+
+
+/* Asegúrate de que estos estilos sean lo suficientemente específicos */
+:host .message {
   margin-top: 20px;
   font-size: 14px;
   font-weight: bold;
+  text-align: center; /* Centra el texto */
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
+  display: inline-block; /* Esto hace que el contenedor se ajuste al contenido */
 }
 
-#message {
+:host .message.error {
   color: #f44336; /* Rojo para el mensaje de error */
 }
 
-#message.success {
+:host .message.success {
   color: #4caf50; /* Verde para el mensaje de éxito */
 }
+
+

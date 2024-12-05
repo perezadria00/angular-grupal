@@ -1,26 +1,34 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-nurse-login',
   templateUrl: './nurse-login.component.html',
-  styleUrls: ['./nurse-login.component.css']
+  styleUrls: ['./nurse-login.component.css'],
+  standalone: true,
+  imports:[FormsModule, CommonModule]
 })
 export class NurseLoginComponent {
+  username: string = '';
+  password: string = '';
+  message: string = '';
+  messageClass: string = '';  // Asegúrate de que esta variable esté bien definida
 
   handleLogin(event: Event) {
     event.preventDefault();
   
-    const username = (document.getElementById('username') as HTMLInputElement).value;
-    const password = (document.getElementById('password') as HTMLInputElement).value;
-  
-    const messageDiv = document.getElementById('message');
-    
-    if (username === 'admin' && password === '1234') {
-      messageDiv!.innerHTML = 'Login successful!';
-      messageDiv!.className = 'success'; // Añadir la clase de éxito
+    if (this.username === 'admin' && this.password === '1234') {
+      this.message = 'Login successful!';
+      this.messageClass = 'success'; // Cambia a 'success'
     } else {
-      messageDiv!.innerHTML = 'Invalid username or password.';
-      messageDiv!.className = ''; // Limpiar las clases anteriores
+      this.message = 'Invalid username or password.';
+      this.messageClass = 'error'; // Cambia a 'error'
     }
+  
+    console.log(this.messageClass); // Verifica si se está asignando correctamente
   }
+  
 }
+
