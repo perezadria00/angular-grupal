@@ -1,0 +1,34 @@
+[
+    {
+      "username": "ana.martinez",
+      "password": "1234",
+      "nombre": "Ana Martínez",
+      "especialidad": "Pediatría",
+      "turno": "Mañana",
+      "telefono": "555-123-456"
+    },
+    {
+      "username": "carlos.lopez",
+      "password": "abcd",
+      "nombre": "Carlos López",
+      "especialidad": "Urgencias",
+      "turno": "Tarde",
+      "telefono": "555-234-567"
+    },
+    {
+      "username": "lucia.fernandez",
+      "password": "5678",
+      "nombre": "Lucía Fernández",
+      "especialidad": "Geriatría",
+      "turno": "Noche",
+      "telefono": "555-345-678"
+    },
+    {
+      "username": "enfermero.prueba",
+      "password": "1234",
+      "nombre": "Pruebas Pruebez",
+      "especialidad": "Odontología",
+      "turno": "Mañana",
+      "telefono": "222-333-444"
+    }
+  ]

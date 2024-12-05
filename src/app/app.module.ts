@@ -6,6 +6,8 @@ import { NurseLoginComponent } from './nurse-login/nurse-login.component'; // Co
 import { ListadoEnfermerosComponent } from './listado-enfermeros/listado-enfermeros.component';
 import { SearchNursesComponent } from './search-nurses/search-nurses.component'; // También standalone
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     NurseLoginComponent,         // Importa componentes standalone
     ListadoEnfermerosComponent,   // Importa componentes standalone
     SearchNursesComponent,
-    FormsModule
+    FormsModule,
   ],
   bootstrap: [AppComponent]
 })
