@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
     BrowserModule,
     AppRoutingModule,
     NurseLoginComponent,         // Importa componentes standalone
-    ListadoEnfermerosComponent,   // Importa componentes standalone
+    ListadoEnfermerosComponent,  
     SearchNursesComponent,
     FormsModule
   ],
