@@ -1,21 +1,21 @@
-/* Asegura que todo tenga box-sizing correcto */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Aplica estilos globales para el contenedor */
+
 :host {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Altura completa de la ventana */
-  background-color: #f4f4f4; /* Fondo gris claro */
+  min-height: 100vh; 
+  background-color: #f4f4f4; 
   font-family: Arial, sans-serif;
 }
 
-/* Estilos del contenedor del formulario */
+
 .form-box {
   background-color: #ffffff;
   padding: 20px;
@@ -25,26 +25,26 @@
   text-align: center;
 }
 
-/* Estilos internos del formulario */
+
 .form {
   text-align: center;
 }
 
-/* Título del formulario */
+
 h1 {
   margin-bottom: 20px;
   font-size: 24px;
   color: #333;
 }
 
-/* Estilo de los labels (en negrita) */
+
 label {
   font-size: 14px;
   color: #333;
   font-weight: bold;
 }
 
-/* Campos de entrada */
+
 input[type="text"],
 input[type="password"] {
   width: 100%;
@@ -55,17 +55,17 @@ input[type="password"] {
   font-size: 14px;
 }
 
-/* Placeholder en campos de entrada */
+
 input[type="text"]::placeholder,
 input[type="password"]::placeholder {
   color: #aaa;
 }
 
-/* Estilos del botón */
+
 button {
   width: 100%;
   padding: 12px;
-  background-color: #4caf50; /* Verde */
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -74,29 +74,29 @@ button {
   transition: background-color 0.3s ease;
 }
 
-/* Estilo cuando el botón es hover */
+
 button:hover {
-  background-color: #45a049; /* Verde más oscuro */
+  background-color: #45a049; 
 }
 
 
 
-/* Asegúrate de que estos estilos sean lo suficientemente específicos */
+
 :host .message {
   margin-top: 20px;
   font-size: 14px;
   font-weight: bold;
-  text-align: center; /* Centra el texto */
-  width: 100%; /* Asegura que ocupe todo el ancho disponible */
-  display: inline-block; /* Esto hace que el contenedor se ajuste al contenido */
+  text-align: center; 
+  width: 100%; 
+  display: inline-block; 
 }
 
 :host .message.error {
-  color: #f44336; /* Rojo para el mensaje de error */
+  color: #f44336; 
 }
 
 :host .message.success {
-  color: #4caf50; /* Verde para el mensaje de éxito */
+  color: #4caf50; 
 }
 
 

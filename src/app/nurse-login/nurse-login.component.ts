@@ -14,20 +14,20 @@ export class NurseLoginComponent {
   username: string = '';
   password: string = '';
   message: string = '';
-  messageClass: string = '';  // Asegúrate de que esta variable esté bien definida
+  messageClass: string = '';  
 
   handleLogin(event: Event) {
     event.preventDefault();
   
     if (this.username === 'admin' && this.password === '1234') {
       this.message = 'Login successful!';
-      this.messageClass = 'success'; // Cambia a 'success'
+      this.messageClass = 'success'; 
     } else {
       this.message = 'Invalid username or password.';
-      this.messageClass = 'error'; // Cambia a 'error'
+      this.messageClass = 'error'; 
     }
   
-    console.log(this.messageClass); // Verifica si se está asignando correctamente
+    console.log(this.messageClass); 
   }
   
 }
