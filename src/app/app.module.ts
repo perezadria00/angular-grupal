@@ -6,6 +6,8 @@ import { NurseLoginComponent } from './nurse-login/nurse-login.component';
 import { ListadoEnfermerosComponent } from './listado-enfermeros/listado-enfermeros.component'; 
 import { SearchNursesComponent } from './search-nurses/search-nurses.component'; 
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+
 import { CommonModule } from '@angular/common';
 
 @NgModule({

@@ -99,4 +99,10 @@ button:hover {
   color: #4caf50; 
 }
 
+.success {
+  color: green;
+}
 
+.error {
+  color: red;
+}
