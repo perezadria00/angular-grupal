@@ -5,6 +5,7 @@ import { ListadoEnfermerosComponent } from './listado-enfermeros/listado-enferme
 import { SearchNursesComponent } from './search-nurses/search-nurses.component';
 
 const routes: Routes = [
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: NurseLoginComponent }, // Ruta raíz para el componente de login
   { path: 'listado', component: ListadoEnfermerosComponent }, // Ruta para ListadoEnfermeros
   { path: 'buscar', component: SearchNursesComponent } // Ruta para Buscar Enfermeros
