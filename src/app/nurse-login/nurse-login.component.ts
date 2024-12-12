@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router'; // Importa el Router
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class NurseLoginComponent {
   message: string = '';
   messageClass: string = '';
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   handleLogin(event: Event) {
     event.preventDefault();
@@ -27,12 +28,17 @@ export class NurseLoginComponent {
         if (isValid) {
           this.message = 'Login successful!';
           this.messageClass = 'success';
+
+          // Espera 2 segundos antes de redirigir
+          setTimeout(() => {
+            this.router.navigate(['/perfil']);
+          }, 2000);
         } else {
           this.message = 'Invalid username or password.';
           this.messageClass = 'error';
         }
       },
-      error => {
+      (error) => {
         console.error('Error al validar el usuario:', error);
         this.message = 'Error al intentar iniciar sesión.';
         this.messageClass = 'error';
@@ -40,3 +46,4 @@ export class NurseLoginComponent {
     );
   }
 }
+

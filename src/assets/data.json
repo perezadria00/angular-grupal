@@ -1,0 +1,47 @@
+[
+    {
+      "username": "ana.martinez",
+      "password": "1234",
+      "nombre": "Ana Martínez",
+      "especialidad": "Pediatría",
+      "turno": "Mañana",
+      "telefono": "555-123-456",
+      "email": "ana.martinez@gmail.com"
+    },
+    {
+      "username": "carlos.lopez",
+      "password": "abcd",
+      "nombre": "Carlos López",
+      "especialidad": "Urgencias",
+      "turno": "Tarde",
+      "telefono": "555-234-567",
+      "email": "carlos.lopez@gmail.com"
+    },
+    {
+      "username": "lucia.fernandez",
+      "password": "5678",
+      "nombre": "Lucía Fernández",
+      "especialidad": "Geriatría",
+      "turno": "Noche",
+      "telefono": "555-345-678",
+      "email": "lucia.fernandez@gmail.com"
+    },
+    {
+      "username": "enfermero.prueba",
+      "password": "1234",
+      "nombre": "Pruebas Pruebez",
+      "especialidad": "Odontología",
+      "turno": "Mañana",
+      "telefono": "222-333-444",
+      "email": "enfermero.prueba@gmail.com"
+    },
+    {
+      "username": "ana.fernandez",
+      "password": "1234",
+      "nombre": "Ana Fernandez",
+      "especialidad": "Pediatría",
+      "turno": "Mañana",
+      "telefono": "555-123-456",
+      "email": "ana.fernandez@gmail.com"
+    }
+  ]

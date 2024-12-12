@@ -1,0 +1,42 @@
+/* Contenedor principal de la página */
+.page-container {
+
+  margin: 0;
+  padding: 20px;
+}
+
+/* Contenedor del perfil */
+.profile-container {
+  max-width: 800px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+}
+
+/* Título */
+.profile-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4CAF50;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Información del perfil */
+.profile-info {
+  margin-top: 20px;
+}
+
+.profile-info p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.profile-info p strong {
+  color: black;
+}
+

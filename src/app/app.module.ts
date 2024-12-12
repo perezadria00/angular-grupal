@@ -2,28 +2,28 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NurseLoginComponent } from './nurse-login/nurse-login.component'; 
-import { ListadoEnfermerosComponent } from './listado-enfermeros/listado-enfermeros.component'; 
-import { SearchNursesComponent } from './search-nurses/search-nurses.component'; 
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
-import { CommonModule } from '@angular/common';
+// Importación de componentes standalone
+import { NurseLoginComponent } from './nurse-login/nurse-login.component';
+import { ListadoEnfermerosComponent } from './listado-enfermeros/listado-enfermeros.component';
+import { SearchNursesComponent } from './search-nurses/search-nurses.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent // Declarado porque no es standalone
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NurseLoginComponent,         
-    ListadoEnfermerosComponent,   
-    SearchNursesComponent,       
     FormsModule,
-    CommonModule
+    HttpClientModule,
+    NurseLoginComponent,
+    ListadoEnfermerosComponent,
+    SearchNursesComponent
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
 

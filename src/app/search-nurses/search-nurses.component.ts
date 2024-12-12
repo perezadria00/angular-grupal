@@ -1,32 +1,52 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-search-nurses',
-  standalone: true, // Asegúrate de que este componente sea standalone
-  imports: [CommonModule, FormsModule], // Incluye CommonModule aquí
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './search-nurses.component.html',
   styleUrls: ['./search-nurses.component.css']
 })
 export class SearchNursesComponent {
-  nombre: string = '';
-  resultados: Array<{ nombre: string; departamento: string }> = [];
-  hasSearched: boolean = false;
+  nombre: string = ''; // Campo de búsqueda
+  resultados: Array<{ nombre: string; departamento: string }> = []; // Resultados de la búsqueda
+  hasSearched: boolean = false; // Indicador de búsqueda realizada
+  errorMessage: string = ''; // Mensaje de error
+
+  constructor(private dataService: DataService) {}
 
   buscarEnfermeros() {
     this.hasSearched = true;
 
-    const enfermeros = [
-      { nombre: 'Laura García', departamento: 'Urgencias' },
-      { nombre: 'Carlos Martínez', departamento: 'Pediatría' },
-      { nombre: 'Ana López', departamento: 'UCI' }
-    ];
+    this.dataService.getData().subscribe(
+      (data: any[]) => {
+        // Filtrar enfermeros según el nombre ingresado
+        this.resultados = data
+          .map((enfermero) => ({
+            nombre: enfermero.nombre,
+            departamento: enfermero.especialidad, // Usamos "especialidad" como departamento
+          }))
+          .filter((enfermero) =>
+            enfermero.nombre.toLowerCase().includes(this.nombre.toLowerCase())
+          );
 
-    this.resultados = enfermeros.filter((enfermero) =>
-      enfermero.nombre.toLowerCase().includes(this.nombre.toLowerCase())
+        // Si no hay resultados, se muestra un mensaje
+        if (this.resultados.length === 0) {
+          this.errorMessage = 'No se encontraron resultados.';
+        } else {
+          this.errorMessage = ''; // Limpiar mensaje de error
+        }
+      },
+      (error) => {
+        console.error('Error al buscar enfermeros:', error);
+        this.errorMessage = 'Ocurrió un error al realizar la búsqueda.';
+      }
     );
   }
 }
+
 
 
