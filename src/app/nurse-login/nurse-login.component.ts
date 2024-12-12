@@ -9,7 +9,7 @@ import { DataService } from '../services/data.service';
   templateUrl: './nurse-login.component.html',
   styleUrls: ['./nurse-login.component.css'],
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule]
 })
 export class NurseLoginComponent {
   username: string = '';
@@ -46,3 +46,4 @@ export class NurseLoginComponent {
     );
   }
 }
+

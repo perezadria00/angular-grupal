@@ -25,5 +25,5 @@ import { SearchNursesComponent } from './search-nurses/search-nurses.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
 
