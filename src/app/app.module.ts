@@ -9,10 +9,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { NurseLoginComponent } from './nurse-login/nurse-login.component';
 import { ListadoEnfermerosComponent } from './listado-enfermeros/listado-enfermeros.component';
 import { SearchNursesComponent } from './search-nurses/search-nurses.component';
+import { NurseRegisterComponent } from './nurse-register/nurse-register.component';
 
 @NgModule({
   declarations: [
-    AppComponent // Declarado porque no es standalone
+    AppComponent,
   ],
   imports: [
     BrowserModule,
