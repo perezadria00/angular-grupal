@@ -29,6 +29,7 @@ export class ListadoEnfermerosComponent implements OnInit {
           especialidad: enfermero.especialidad,
           turno: enfermero.turno,
           telefono: enfermero.telefono,
+          imgPerfil: (enfermero as any)['img-perfil'] // Solución para propiedades con guiones
         }));
       },
       (error) => {
@@ -37,5 +38,6 @@ export class ListadoEnfermerosComponent implements OnInit {
       }
     );
   }
+  
 }
 
