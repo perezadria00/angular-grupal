@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,13 @@ import { map, catchError } from 'rxjs/operators';
 export class DataService {
   private dataUrl: string = 'assets/data.json'; // Ruta al archivo JSON
   private loggedInUser: any = null; // Almacena el usuario logueado
+  private users: any[] = []; // Simulación de datos cargados
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getData().subscribe((data) => {
+      this.users = data;
+    });
+  }
 
   // Método para obtener todos los usuarios
   getData(): Observable<any[]> {
@@ -18,6 +24,16 @@ export class DataService {
       catchError((error) => {
         console.error('Error al obtener los datos:', error);
         return of([]); // Devuelve un array vacío en caso de error
+      })
+    );
+  }
+
+  // Método para agregar un nuevo usuario
+  addUser(user: any): Observable<any> {
+    return this.http.post(this.dataUrl, user).pipe(
+      catchError((error) => {
+        console.error('Error al agregar usuario:', error);
+        return throwError(error);
       })
     );
   }

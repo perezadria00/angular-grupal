@@ -1,0 +1,30 @@
+<div class="register-form">
+    <h2>Registro de Enfermeros</h2>
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" [(ngModel)]="formData.username" #username="ngModel" required />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="formData.password" #password="ngModel"
+            required />
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" [(ngModel)]="formData.nombre" #nombre="ngModel" required />
+
+        <label for="especialidad">Especialidad:</label>
+        <input type="text" id="especialidad" name="especialidad" [(ngModel)]="formData.especialidad"
+            #especialidad="ngModel" required />
+
+        <label for="turno">Turno:</label>
+        <select id="turno" name="turno" [(ngModel)]="formData.turno" #turno="ngModel" required>
+            <option value="Mañana">Mañana</option>
+            <option value="Tarde">Tarde</option>
+            <option value="Noche">Noche</option>
+        </select>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" [(ngModel)]="formData.telefono" #telefono="ngModel" required />
+
+        <button type="submit" [disabled]="registerForm.invalid">Registrar</button>
+    </form>
+</div>

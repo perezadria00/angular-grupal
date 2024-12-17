@@ -1,0 +1,33 @@
+.register-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1rem;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+label {
+    display: block;
+    margin: 1rem 0 .2rem;
+}
+
+input,
+select,
+button {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3e8a40;
+}
