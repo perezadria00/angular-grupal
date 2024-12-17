@@ -6,7 +6,8 @@
       "especialidad": "Pediatría",
       "turno": "Mañana",
       "telefono": "555-123-456",
-      "email": "ana.martinez@gmail.com"
+      "email": "ana.martinez@gmail.com",
+      "img-perfil": "assets/images/prueba-jpg"
     },
     {
       "username": "carlos.lopez",
@@ -15,7 +16,9 @@
       "especialidad": "Urgencias",
       "turno": "Tarde",
       "telefono": "555-234-567",
-      "email": "carlos.lopez@gmail.com"
+      "email": "carlos.lopez@gmail.com",
+      "img-perfil": "assets/images/prueba-jpg"
+
     },
     {
       "username": "lucia.fernandez",
@@ -24,7 +27,8 @@
       "especialidad": "Geriatría",
       "turno": "Noche",
       "telefono": "555-345-678",
-      "email": "lucia.fernandez@gmail.com"
+      "email": "lucia.fernandez@gmail.com",
+      "img-perfil": "assets/images/prueba-jpg"
     },
     {
       "username": "enfermero.prueba",
@@ -33,7 +37,8 @@
       "especialidad": "Odontología",
       "turno": "Mañana",
       "telefono": "222-333-444",
-      "email": "enfermero.prueba@gmail.com"
+      "email": "enfermero.prueba@gmail.com",
+      "img-perfil": "assets/images/prueba-jpg"
     },
     {
       "username": "ana.fernandez",
@@ -42,6 +47,7 @@
       "especialidad": "Pediatría",
       "turno": "Mañana",
       "telefono": "555-123-456",
-      "email": "ana.fernandez@gmail.com"
+      "email": "ana.fernandez@gmail.com",
+      "img-perfil": "assets/images/prueba-jpg"
     }
   ]

@@ -1,6 +1,5 @@
 /* Contenedor principal de la página */
 .page-container {
-
   margin: 0;
   padding: 20px;
 }
@@ -25,9 +24,16 @@
   font-weight: bold;
 }
 
+/* Contenedor flexible para la información y la imagen */
+.profile-content {
+  display: flex; /* Hace que el contenido sea flexible */
+  justify-content: space-between; /* Separa los elementos a los extremos */
+  align-items: flex-start; /* Alinea verticalmente */
+}
+
 /* Información del perfil */
 .profile-info {
-  margin-top: 20px;
+  flex: 1; /* Ocupa el espacio restante */
 }
 
 .profile-info p {
@@ -40,3 +46,15 @@
   color: black;
 }
 
+/* Imagen del perfil */
+.profile-image {
+  margin-left: 20px;
+  margin-right: 40px; /* Espacio entre la imagen y el texto */
+}
+
+.profile-image img {
+  max-width: 150px; /* Tamaño máximo de la imagen */
+  height: auto;
+  border-radius: 8px; /* Bordes redondeados para la imagen */
+  border: 1px solid #ccc;
+}

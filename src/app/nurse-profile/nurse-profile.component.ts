@@ -14,6 +14,7 @@ export class NurseProfileComponent implements OnInit {
   phone_number: string = '';
   username: string = '';
   email: string = '';
+  imgPerfil: string = ''; // Nueva variable para la imagen
 
   constructor(private dataService: DataService) {}
 
@@ -24,14 +25,15 @@ export class NurseProfileComponent implements OnInit {
   fetchProfileData() {
     this.dataService.getProfile().subscribe(
       (profile) => {
+        console.log('Perfil recibido:', profile); // Imprime el perfil completo en la consola
         if (profile) {
-          // Asignar los datos al perfil
           this.name = profile.nombre;
           this.speciality = profile.especialidad;
           this.shift = profile.turno;
           this.phone_number = profile.telefono;
           this.username = profile.username;
           this.email = profile.email;
+          this.imgPerfil = profile['img-perfil'] || 'assets/images/prueba.jpg'; // Imagen por defecto
         } else {
           console.error('No hay un usuario autenticado.');
         }
@@ -41,5 +43,6 @@ export class NurseProfileComponent implements OnInit {
       }
     );
   }
+  
 }
 
