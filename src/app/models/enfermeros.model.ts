@@ -5,5 +5,6 @@ export interface Enfermero {
     especialidad: string;
     turno: string;
     telefono: string;
+    imgPerfil?: string; // Añadimos imgPerfil como opcional
   }
   
