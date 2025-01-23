@@ -1,0 +1,105 @@
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título */
+  h2 {
+    text-align: center;
+    color: #4CAF50;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Tabla */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;
+  }
+  
+  /* Encabezado de la tabla */
+  table thead {
+    background-color: #4CAF50;
+    color: white;
+    text-align: left;
+  }
+  
+  table thead th {
+    padding: 15px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+  }
+  
+  /* Filas de la tabla */
+  table tbody tr {
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+  }
+  
+  table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Celdas de la tabla */
+  table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  /* Responsive */
+  @media screen and (max-width: 768px) {
+    table {
+      font-size: 14px;
+    }
+  
+    table thead th,
+    table td {
+      padding: 10px;
+    }
+  }
+  
+  /* Barra de navegación */
+  .navbar {
+    background-color: #4CAF50;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar a:hover {
+    background-color: #45a049;
+  }
+  
+  /* Mensajes de error o información */
+  .error-message {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .success-message {
+    color: green;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
