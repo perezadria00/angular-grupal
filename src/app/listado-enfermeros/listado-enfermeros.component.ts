@@ -12,25 +12,18 @@ import { Enfermero } from '../models/enfermeros.model';
   imports: [CommonModule, HttpClientModule],
 })
 export class ListadoEnfermerosComponent implements OnInit {
-  enfermeros: Partial<Enfermero>[] = []; // Arreglo dinámico para almacenar los datos de enfermeros
-  errorMessage: string = ''; // Para manejar errores
-
+  enfermeros: Enfermero[] = []; 
+  errorMessage: string = ''; 
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
     this.fetchEnfermeros();
   }
 
-  fetchEnfermeros() {
+  fetchEnfermeros(): void {
     this.dataService.getData().subscribe(
-      (data: Partial<Enfermero>[]) => {
-        this.enfermeros = data.map((enfermero) => ({
-          nombre: enfermero.nombre,
-          especialidad: enfermero.especialidad,
-          turno: enfermero.turno,
-          telefono: enfermero.telefono,
-          imgPerfil: (enfermero as any)['img-perfil'] // Solución para propiedades con guiones
-        }));
+      (data: Enfermero[]) => {
+        this.enfermeros = data; // Asignar directamente los datos si coinciden con el modelo
       },
       (error) => {
         console.error('Error al obtener los datos de enfermeros:', error);
@@ -38,6 +31,4 @@ export class ListadoEnfermerosComponent implements OnInit {
       }
     );
   }
-  
 }
-

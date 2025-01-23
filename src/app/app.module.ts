@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+
 // Importación de componentes standalone
 import { NurseLoginComponent } from './nurse-login/nurse-login.component';
 import { ListadoEnfermerosComponent } from './listado-enfermeros/listado-enfermeros.component';

@@ -3,30 +3,37 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { Enfermero } from '../models/enfermeros.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  private dataUrl: string = 'assets/data.json'; // Ruta al archivo JSON
-  private loggedInUser: any = null; // Almacena el usuario logueado
-  private users: any[] = []; // Simulación de datos cargados
+  private dataUrl: string = 'http://localhost:8000/nurse'; 
+  private loggedInUser: any = null; 
+  private users: any[] = []; 
 
   constructor(private http: HttpClient) {
-    this.getData().subscribe((data) => {
-      this.users = data;
-    });
+   
   }
 
-  // Método para obtener todos los usuarios
-  getData(): Observable<any[]> {
-    return this.http.get<any[]>(this.dataUrl).pipe(
-      catchError((error) => {
-        console.error('Error al obtener los datos:', error);
-        return of([]); // Devuelve un array vacío en caso de error
-      })
-    );
-  }
+ getData(): Observable<Enfermero[]> {
+  return this.http.get<{ status: string; nurses: Enfermero[] }>(`${this.dataUrl}/index`).pipe(
+    map((response) => {
+      if (response.status === 'success') {
+        return response.nurses; 
+      } else {
+        console.error('Error en la respuesta del servidor:', response);
+        return []; 
+      }
+    }),
+    catchError((error) => {
+      console.error('Error al obtener los datos:', error);
+      return of([]); 
+    })
+  );
+}
+
 
   // Método para agregar un nuevo usuario
   addUser(user: any): Observable<any> {
