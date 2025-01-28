@@ -1,6 +1,7 @@
 <div class="register-form">
-    <h2>Registro de Enfermeros</h2>
     <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+        <h2>Registro de enfermeros</h2>
+
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" [(ngModel)]="formData.username" #username="ngModel" required />
 

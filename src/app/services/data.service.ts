@@ -17,8 +17,12 @@ export class DataService {
    
   }
 
- getData(): Observable<Enfermero[]> {
-  return this.http.get<{ status: string; nurses: Enfermero[] }>(`${this.dataUrl}/index`).pipe(
+ getData(filters: { name?: string; surname?: string } = {}): Observable<Enfermero[]> {
+  const params: any = {};
+  if (filters.name) params.name = filters.name;
+  if (filters.surname) params.surname = filters.surname;
+
+  return this.http.get<{ status: string; nurses: Enfermero[] }>(`${this.dataUrl}/index`, { params }).pipe(
     map((response) => {
       if (response.status === 'success') {
         return response.nurses; 

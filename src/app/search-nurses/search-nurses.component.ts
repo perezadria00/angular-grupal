@@ -21,13 +21,13 @@ export class SearchNursesComponent {
   buscarEnfermeros() {
     this.hasSearched = true;
 
-    this.dataService.getData().subscribe(
+    this.dataService.getData({ name: this.nombre }).subscribe(
       (data: any[]) => {
         // Filtrar enfermeros según el nombre ingresado
         this.resultados = data
           .map((enfermero) => ({
-            nombre: enfermero.nombre,
-            departamento: enfermero.especialidad, // Usamos "especialidad" como departamento
+            nombre: `${enfermero.name} ${enfermero.surname}`,
+            departamento: `${enfermero.speciality}`, // Usamos "especialidad" como departamento
           }))
           .filter((enfermero) =>
             enfermero.nombre.toLowerCase().includes(this.nombre.toLowerCase())

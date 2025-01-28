@@ -1,4 +1,121 @@
-.register-form {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  
+  :host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    background-color: #f4f4f4; 
+    font-family: Arial, sans-serif;
+  }
+  
+  
+  .form-box {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+  }
+  
+  
+  .form {
+    text-align: center;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 40px;
+    color: #4caf50;
+  }
+  
+  
+  h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  
+  label {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  
+  input[type="text"],
+  input[type="tel"],
+  select,
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  
+  input[type="text"]::placeholder,
+  input[type="password"]::placeholder {
+    color: #aaa;
+  }
+  
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  
+  button:hover {
+    background-color: #45a049; 
+  }
+  
+  
+  
+  
+  :host .message {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center; 
+    width: 100%; 
+    display: inline-block; 
+  }
+  
+  :host .message.error {
+    color: #f44336; 
+  }
+  
+  :host .message.success {
+    color: #4caf50; 
+  }
+  
+  .success {
+    color: green;
+  }
+  
+  .error {
+    color: red;
+  }
+  
+
+/*.register-form {
     max-width: 500px;
     margin: 0 auto;
     padding: 1rem;
@@ -30,4 +147,4 @@ button {
 
 button:hover {
     background-color: #3e8a40;
-}
+}*/
