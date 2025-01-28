@@ -1,31 +1,129 @@
 <div class="register-form">
+    <h2>Registro de Enfermeros</h2>
+  
     <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
-        <h2>Registro de enfermeros</h2>
-
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" [(ngModel)]="formData.username" #username="ngModel" required />
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" [(ngModel)]="formData.password" #password="ngModel"
-            required />
-
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" [(ngModel)]="formData.nombre" #nombre="ngModel" required />
-
-        <label for="especialidad">Especialidad:</label>
-        <input type="text" id="especialidad" name="especialidad" [(ngModel)]="formData.especialidad"
-            #especialidad="ngModel" required />
-
-        <label for="turno">Turno:</label>
-        <select id="turno" name="turno" [(ngModel)]="formData.turno" #turno="ngModel" required>
-            <option value="Mañana">Mañana</option>
-            <option value="Tarde">Tarde</option>
-            <option value="Noche">Noche</option>
-        </select>
-
-        <label for="telefono">Teléfono:</label>
-        <input type="tel" id="telefono" name="telefono" [(ngModel)]="formData.telefono" #telefono="ngModel" required />
-
-        <button type="submit" [disabled]="registerForm.invalid">Registrar</button>
+      <!-- Username -->
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="formData.username"
+        #username="ngModel"
+        required
+        minlength="3"
+      />
+      <div *ngIf="username.invalid && username.touched" class="error">
+        <small *ngIf="username.errors?.['required']">El nombre de usuario es obligatorio.</small>
+        <small *ngIf="username.errors?.['minlength']">Debe tener al menos 3 caracteres.</small>
+      </div>
+  
+      <!-- Password -->
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="formData.password"
+        #password="ngModel"
+        required
+        minlength="6"
+      />
+      <div *ngIf="password.invalid && password.touched" class="error">
+        <small *ngIf="password.errors?.['required']">La contraseña es obligatoria.</small>
+        <small *ngIf="password.errors?.['minlength']">Debe tener al menos 6 caracteres.</small>
+      </div>
+  
+      <!-- Nombre -->
+      <label for="nombre">Nombre:</label>
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        [(ngModel)]="formData.nombre"
+        #nombre="ngModel"
+        required
+      />
+      <div *ngIf="nombre.invalid && nombre.touched" class="error">
+        <small>El nombre es obligatorio.</small>
+      </div>
+  
+      <!-- Apellido -->
+      <label for="apellido">Apellido:</label>
+      <input
+        type="text"
+        id="apellido"
+        name="apellido"
+        [(ngModel)]="formData.apellido"
+        #apellido="ngModel"
+        required
+      />
+      <div *ngIf="apellido.invalid && apellido.touched" class="error">
+        <small>El apellido es obligatorio.</small>
+      </div>
+  
+      <!-- Especialidad -->
+      <label for="especialidad">Especialidad:</label>
+      <input
+        type="text"
+        id="especialidad"
+        name="especialidad"
+        [(ngModel)]="formData.especialidad"
+        #especialidad="ngModel"
+        required
+      />
+      <div *ngIf="especialidad.invalid && especialidad.touched" class="error">
+        <small>La especialidad es obligatoria.</small>
+      </div>
+  
+      <!-- Turno -->
+      <label for="turno">Turno:</label>
+      <select
+        id="turno"
+        name="turno"
+        [(ngModel)]="formData.turno"
+        #turno="ngModel"
+        required
+      >
+        <option value="" disabled>Selecciona un turno</option>
+        <option value="Mañana">Mañana</option>
+        <option value="Tarde">Tarde</option>
+        <option value="Noche">Noche</option>
+      </select>
+      <div *ngIf="turno.invalid && turno.touched" class="error">
+        <small>El turno es obligatorio.</small>
+      </div>
+  
+      <!-- Teléfono -->
+      <label for="telefono">Teléfono:</label>
+      <input
+        type="tel"
+        id="telefono"
+        name="telefono"
+        [(ngModel)]="formData.telefono"
+        #telefono="ngModel"
+        required
+        pattern="^\d{3}-\d{3}-\d{3}$"
+      />
+      <div *ngIf="telefono.invalid && telefono.touched" class="error">
+        <small *ngIf="telefono.errors?.['required']">El teléfono es obligatorio.</small>
+        <small *ngIf="telefono.errors?.['pattern']">Formato inválido. Ej.: 123-456-789</small>
+      </div>
+  
+      <!-- Botón de registro -->
+      <button type="submit" [disabled]="registerForm.invalid">
+        Registrar
+      </button>
     </form>
-</div>
+  
+    <!-- Mensajes de éxito y error -->
+    <div class="message-container" *ngIf="successMessage || errorMessage">
+      <div *ngIf="successMessage" class="message-container success">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="message-container error">
+        {{ errorMessage }}
+      </div>
+    </div>
+  </div>
+  
