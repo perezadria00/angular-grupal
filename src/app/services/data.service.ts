@@ -39,15 +39,26 @@ export class DataService {
 }
 
 
-  // Método para agregar un nuevo usuario
-  addUser(user: any): Observable<any> {
-    return this.http.post(this.dataUrl, user).pipe(
-      catchError((error) => {
-        console.error('Error al agregar usuario:', error);
-        return throwError(error);
-      })
-    );
-  }
+addUser(user: Partial<Enfermero>): Observable<{ status: string; message?: string; nurse?: Enfermero }> {
+  return this.http.post<{ status: string; message?: string; nurse?: Enfermero }>(`${this.dataUrl}/new`, user).pipe(
+    map((response) => {
+      if (response.status === 'success') {
+        console.log('Usuario registrado con éxito:', response.nurse);
+        return response; // Devuelve el objeto completo con status, message y nurse
+      } else {
+        console.error('Error en la respuesta del servidor:', response);
+        throw new Error(response.message || 'Registro fallido');
+      }
+    }),
+    catchError((error) => {
+      console.error('Error al registrar el usuario:', error);
+      return throwError(() => new Error('Error al registrar el usuario.'));
+    })
+  );
+}
+
+
+
 
   // Método para validar usuario y contraseña
   validateUser(username: string, password: string): Observable<boolean> {
@@ -68,6 +79,12 @@ export class DataService {
       })
     );
   }
+
+  validatePhone(phone: string): boolean {
+    const phoneRegex = /^\d{3}-\d{3}-\d{3}$/; // Regla para XXX-XXX-XXX
+    return phoneRegex.test(phone);
+  }
+  
 
   // Método para obtener el perfil del usuario autenticado
   getProfile(): Observable<any> {
