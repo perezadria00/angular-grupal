@@ -16,7 +16,7 @@ export class DataService {
   constructor(private http: HttpClient) {
    
   }
-
+  
  getData(filters: { name?: string; surname?: string } = {}): Observable<Enfermero[]> {
   const params: any = {};
   if (filters.name) params.name = filters.name;
