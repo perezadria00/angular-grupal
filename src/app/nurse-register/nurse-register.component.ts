@@ -24,17 +24,25 @@ export class NurseRegisterComponent {
   };
   successMessage: string = '';
   errorMessage: string = '';
+  showErrors: boolean = false; // Nueva variable para mostrar errores
 
   constructor(private dataService: DataService, private router: Router) {}
 
-  onSubmit() {
-    if (!this.formData.phone.match(/^\d{3}-\d{3}-\d{3}$/)) {
-      this.errorMessage = 'Formato de teléfono inválido. Ej.: XXX-XXX-XXX.';
-      this.successMessage = '';
+  onSubmit(form: any) {
+    if (form.invalid) {
+      this.showErrors = true; // Muestra los errores si el formulario es inválido
       return;
     }
 
-    const userPayload: Partial<Enfermero> = { ...this.formData };
+    const userPayload: Partial<Enfermero> = {
+      username: this.formData.username,
+      password: this.formData.password,
+      name: this.formData.name,
+      surname: this.formData.surname,
+      speciality: this.formData.speciality,
+      shift: this.formData.shift,
+      phone: this.formData.phone,
+    };
 
     this.dataService.addUser(userPayload).subscribe(
       (response) => {
@@ -50,7 +58,7 @@ export class NurseRegisterComponent {
             shift: '',
             phone: '',
           };
-          setTimeout(() => this.router.navigate(['/nurse-login']), 2000);
+          setTimeout(() => this.router.navigate(['/login']), 2000);
         } else {
           this.successMessage = '';
           this.errorMessage = response.message || 'Error en el registro.';
@@ -59,11 +67,7 @@ export class NurseRegisterComponent {
       (error) => {
         console.error('Error al registrar el usuario:', error);
         this.successMessage = '';
-        if (error.error?.message) {
-          this.errorMessage = error.error.message; // Mensaje del backend
-        } else {
-          this.errorMessage = 'Error al conectar con el servidor.';
-        }
+        this.errorMessage = error.error?.message || 'Error al conectar con el servidor.';
       }
     );
   }

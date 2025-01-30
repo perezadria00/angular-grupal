@@ -1,7 +1,7 @@
 <div class="register-form">
   <h2>Registro de Enfermeros</h2>
 
-  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+  <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
     <!-- Username -->
     <label for="username">Usuario:</label>
     <input
@@ -13,9 +13,14 @@
       required
       minlength="3"
     />
-    <div *ngIf="username.invalid && username.touched" class="error">
-      <small *ngIf="username.errors?.['required']">El nombre de usuario es obligatorio.</small>
-      <small *ngIf="username.errors?.['minlength']">Debe tener al menos 3 caracteres.</small>
+    <div class="error-message-container">
+      <small
+        class="error-message"
+        *ngIf="username.invalid && (username.touched || showErrors)"
+      >
+        <span *ngIf="username.errors?.['required']">El nombre de usuario es obligatorio.</span>
+        <span *ngIf="username.errors?.['minlength']">Debe tener al menos 3 caracteres.</span>
+      </small>
     </div>
 
     <!-- Password -->
@@ -29,9 +34,14 @@
       required
       minlength="6"
     />
-    <div *ngIf="password.invalid && password.touched" class="error">
-      <small *ngIf="password.errors?.['required']">La contraseña es obligatoria.</small>
-      <small *ngIf="password.errors?.['minlength']">Debe tener al menos 6 caracteres.</small>
+    <div class="error-message-container">
+      <small
+        class="error-message"
+        *ngIf="password.invalid && (password.touched || showErrors)"
+      >
+        <span *ngIf="password.errors?.['required']">La contraseña es obligatoria.</span>
+        <span *ngIf="password.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
+      </small>
     </div>
 
     <!-- Nombre -->
@@ -44,8 +54,13 @@
       #name="ngModel"
       required
     />
-    <div *ngIf="name.invalid && name.touched" class="error">
-      <small>El nombre es obligatorio.</small>
+    <div class="error-message-container">
+      <small
+        class="error-message"
+        *ngIf="name.invalid && (name.touched || showErrors)"
+      >
+        El nombre es obligatorio.
+      </small>
     </div>
 
     <!-- Apellido -->
@@ -58,8 +73,13 @@
       #surname="ngModel"
       required
     />
-    <div *ngIf="surname.invalid && surname.touched" class="error">
-      <small>El apellido es obligatorio.</small>
+    <div class="error-message-container">
+      <small
+        class="error-message"
+        *ngIf="surname.invalid && (surname.touched || showErrors)"
+      >
+        El apellido es obligatorio.
+      </small>
     </div>
 
     <!-- Especialidad -->
@@ -72,8 +92,13 @@
       #speciality="ngModel"
       required
     />
-    <div *ngIf="speciality.invalid && speciality.touched" class="error">
-      <small>La especialidad es obligatoria.</small>
+    <div class="error-message-container">
+      <small
+        class="error-message"
+        *ngIf="speciality.invalid && (speciality.touched || showErrors)"
+      >
+        La especialidad es obligatoria.
+      </small>
     </div>
 
     <!-- Turno -->
@@ -90,8 +115,13 @@
       <option value="Tarde">Tarde</option>
       <option value="Noche">Noche</option>
     </select>
-    <div *ngIf="shift.invalid && shift.touched" class="error">
-      <small>El turno es obligatorio.</small>
+    <div class="error-message-container">
+      <small
+        class="error-message"
+        *ngIf="shift.invalid && (shift.touched || showErrors)"
+      >
+        El turno es obligatorio.
+      </small>
     </div>
 
     <!-- Teléfono -->
@@ -105,9 +135,14 @@
       required
       pattern="^\d{3}-\d{3}-\d{3}$"
     />
-    <div *ngIf="phone.invalid && phone.touched" class="error">
-      <small *ngIf="phone.errors?.['required']">El teléfono es obligatorio.</small>
-      <small *ngIf="phone.errors?.['pattern']">Formato inválido. Ej.: 123-456-789</small>
+    <div class="error-message-container">
+      <small
+        class="error-message"
+        *ngIf="phone.invalid && (phone.touched || showErrors)"
+      >
+        <span *ngIf="phone.errors?.['required']">El teléfono es obligatorio.</span>
+        <span *ngIf="phone.errors?.['pattern']">Formato inválido. Ej.: 123-456-789</span>
+      </small>
     </div>
 
     <!-- Botón de registro -->
