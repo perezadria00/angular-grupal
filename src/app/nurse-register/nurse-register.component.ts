@@ -16,11 +16,11 @@ export class NurseRegisterComponent {
   formData = {
     username: '',
     password: '',
-    nombre: '',
-    apellido: '',
-    especialidad: '',
-    turno: '',
-    telefono: '',
+    name: '',
+    surname: '',
+    speciality: '',
+    shift: '',
+    phone: '',
   };
   successMessage: string = '';
   errorMessage: string = '';
@@ -28,21 +28,13 @@ export class NurseRegisterComponent {
   constructor(private dataService: DataService, private router: Router) {}
 
   onSubmit() {
-    if (!this.formData.telefono.match(/^\d{3}-\d{3}-\d{3}$/)) {
+    if (!this.formData.phone.match(/^\d{3}-\d{3}-\d{3}$/)) {
       this.errorMessage = 'Formato de teléfono inválido. Ej.: XXX-XXX-XXX.';
       this.successMessage = '';
       return;
     }
 
-    const userPayload: Partial<Enfermero> = {
-      username: this.formData.username,
-      password: this.formData.password,
-      name: this.formData.nombre,
-      surname: this.formData.apellido,
-      speciality: this.formData.especialidad,
-      shift: this.formData.turno,
-      phone: this.formData.telefono,
-    };
+    const userPayload: Partial<Enfermero> = { ...this.formData };
 
     this.dataService.addUser(userPayload).subscribe(
       (response) => {
@@ -52,11 +44,11 @@ export class NurseRegisterComponent {
           this.formData = {
             username: '',
             password: '',
-            nombre: '',
-            apellido: '',
-            especialidad: '',
-            turno: '',
-            telefono: '',
+            name: '',
+            surname: '',
+            speciality: '',
+            shift: '',
+            phone: '',
           };
           setTimeout(() => this.router.navigate(['/nurse-login']), 2000);
         } else {
@@ -74,6 +66,5 @@ export class NurseRegisterComponent {
         }
       }
     );
-    
   }
 }
