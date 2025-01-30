@@ -12,7 +12,7 @@ import { DataService } from '../services/data.service';
 })
 export class SearchNursesComponent {
   nombre: string = ''; // Campo de búsqueda
-  resultados: Array<{ nombre: string; departamento: string }> = []; // Resultados de la búsqueda
+  resultados: Array<{ nombre: string; usuario: string; departamento: string }> = []; // Resultados de la búsqueda
   hasSearched: boolean = false; // Indicador de búsqueda realizada
   errorMessage: string = ''; // Mensaje de error
 
@@ -21,16 +21,21 @@ export class SearchNursesComponent {
   buscarEnfermeros() {
     this.hasSearched = true;
 
-    this.dataService.getData({ name: this.nombre }).subscribe(
+    this.dataService.getData().subscribe(
       (data: any[]) => {
-        // Filtrar enfermeros según el nombre ingresado
+        const normalizedInput = this.normalizeString(this.nombre);
+
+        // Filtrar enfermeros por nombre completo o usuario
         this.resultados = data
           .map((enfermero) => ({
             nombre: `${enfermero.name} ${enfermero.surname}`,
-            departamento: `${enfermero.speciality}`, // Usamos "especialidad" como departamento
+            usuario: enfermero.username,
+            departamento: enfermero.speciality,
           }))
-          .filter((enfermero) =>
-            enfermero.nombre.toLowerCase().includes(this.nombre.toLowerCase())
+          .filter(
+            (enfermero) =>
+              this.normalizeString(enfermero.nombre).includes(normalizedInput) ||
+              this.normalizeString(enfermero.usuario).includes(normalizedInput)
           );
 
         // Si no hay resultados, se muestra un mensaje
@@ -46,7 +51,12 @@ export class SearchNursesComponent {
       }
     );
   }
+
+  // Normalizar cadenas eliminando tildes y convirtiendo a minúsculas
+  private normalizeString(str: string): string {
+    return str
+      .normalize('NFD') // Descompone caracteres con tilde
+      .replace(/[\u0300-\u036f]/g, '') // Elimina marcas diacríticas
+      .toLowerCase(); // Convierte a minúsculas
+  }
 }
-
-
-

@@ -2,40 +2,38 @@
   <div class="profile-container">
     <h2>Búsqueda de Enfermeros</h2>
 
-    <div class="profile-info">
-      <!-- Formulario de búsqueda -->
-      <form (submit)="buscarEnfermeros()" class="search-form">
-        <input
-          type="text"
-          [(ngModel)]="nombre"
-          name="nombre"
-          placeholder="Introduce el nombre del enfermero"
-          class="search-input"
-        />
-        <button type="submit" class="search-button">Buscar</button>
-      </form>
+    <!-- Formulario de búsqueda -->
+    <form (submit)="buscarEnfermeros()" class="search-form">
+      <input
+        type="text"
+        [(ngModel)]="nombre"
+        name="nombre"
+        placeholder="Introduce el nombre o usuario del enfermero"
+        class="search-input"
+      />
+      <button type="submit" class="search-button">Buscar</button>
+    </form>
 
-      <!-- Resultados de búsqueda -->
-      <div *ngIf="resultados.length > 0 && !errorMessage" class="resultados">
-        <h3>Resultados</h3>
-        <ul>
-          <li *ngFor="let enfermero of resultados">
-            <p><strong>Nombre:</strong> {{ enfermero.nombre }}</p>
-            <p><strong>Departamento:</strong> {{ enfermero.departamento }}</p>
-          </li>
-        </ul>
-      </div>
+    <!-- Resultados de búsqueda -->
+    <div *ngIf="resultados.length > 0 && !errorMessage" class="resultados">
+      <h3>Resultados</h3>
+      <ul>
+        <li *ngFor="let enfermero of resultados">
+          <p><strong>Nombre:</strong> {{ enfermero.nombre }}</p>
+          <p><strong>Usuario:</strong> {{ enfermero.usuario }}</p>
+          <p><strong>Departamento:</strong> {{ enfermero.departamento }}</p>
+        </li>
+      </ul>
+    </div>
 
-      <!-- Mensaje si no hay resultados -->
-      <div *ngIf="resultados.length === 0 && hasSearched && !errorMessage" class="error">
-        <p>No se encontraron resultados.</p>
-      </div>
+    <!-- Mensaje si no hay resultados -->
+    <div *ngIf="resultados.length === 0 && hasSearched && !errorMessage" class="error">
+      <p>No se encontraron resultados.</p>
+    </div>
 
-      <!-- Mensaje de error general -->
-      <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
-      </div>
+    <!-- Mensaje de error general -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
     </div>
   </div>
 </div>
-
