@@ -1,8 +1,8 @@
 <div class="register-form">
   <h2>Registro de Enfermeros</h2>
 
-  <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
-    <!-- Username -->
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+    <!-- Usuario -->
     <label for="username">Usuario:</label>
     <input
       type="text"
@@ -13,17 +13,27 @@
       required
       minlength="3"
     />
-    <div class="error-message-container">
-      <small
-        class="error-message"
-        *ngIf="username.invalid && (username.touched || showErrors)"
-      >
-        <span *ngIf="username.errors?.['required']">El nombre de usuario es obligatorio.</span>
-        <span *ngIf="username.errors?.['minlength']">Debe tener al menos 3 caracteres.</span>
-      </small>
+    <div *ngIf="hasSubmitted && username.invalid" class="error">
+      <small *ngIf="username.errors?.['required']">El nombre de usuario es obligatorio.</small>
+      <small *ngIf="username.errors?.['minlength']">Debe tener al menos 3 caracteres.</small>
     </div>
 
-    <!-- Password -->
+    <!-- Email -->
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      [(ngModel)]="formData.email"
+      #email="ngModel"
+      required
+    />
+    <div *ngIf="hasSubmitted && email.invalid" class="error">
+      <small *ngIf="email.errors?.['required']">El email es obligatorio.</small>
+      <small *ngIf="email.errors?.['email']">Formato de email inválido.</small>
+    </div>
+
+    <!-- Contraseña -->
     <label for="password">Contraseña:</label>
     <input
       type="password"
@@ -34,14 +44,9 @@
       required
       minlength="6"
     />
-    <div class="error-message-container">
-      <small
-        class="error-message"
-        *ngIf="password.invalid && (password.touched || showErrors)"
-      >
-        <span *ngIf="password.errors?.['required']">La contraseña es obligatoria.</span>
-        <span *ngIf="password.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
-      </small>
+    <div *ngIf="hasSubmitted && password.invalid" class="error">
+      <small *ngIf="password.errors?.['required']">La contraseña es obligatoria.</small>
+      <small *ngIf="password.errors?.['minlength']">Debe tener al menos 6 caracteres.</small>
     </div>
 
     <!-- Nombre -->
@@ -54,13 +59,8 @@
       #name="ngModel"
       required
     />
-    <div class="error-message-container">
-      <small
-        class="error-message"
-        *ngIf="name.invalid && (name.touched || showErrors)"
-      >
-        El nombre es obligatorio.
-      </small>
+    <div *ngIf="hasSubmitted && name.invalid" class="error">
+      <small>El nombre es obligatorio.</small>
     </div>
 
     <!-- Apellido -->
@@ -73,13 +73,8 @@
       #surname="ngModel"
       required
     />
-    <div class="error-message-container">
-      <small
-        class="error-message"
-        *ngIf="surname.invalid && (surname.touched || showErrors)"
-      >
-        El apellido es obligatorio.
-      </small>
+    <div *ngIf="hasSubmitted && surname.invalid" class="error">
+      <small>El apellido es obligatorio.</small>
     </div>
 
     <!-- Especialidad -->
@@ -92,13 +87,8 @@
       #speciality="ngModel"
       required
     />
-    <div class="error-message-container">
-      <small
-        class="error-message"
-        *ngIf="speciality.invalid && (speciality.touched || showErrors)"
-      >
-        La especialidad es obligatoria.
-      </small>
+    <div *ngIf="hasSubmitted && speciality.invalid" class="error">
+      <small>La especialidad es obligatoria.</small>
     </div>
 
     <!-- Turno -->
@@ -115,13 +105,8 @@
       <option value="Tarde">Tarde</option>
       <option value="Noche">Noche</option>
     </select>
-    <div class="error-message-container">
-      <small
-        class="error-message"
-        *ngIf="shift.invalid && (shift.touched || showErrors)"
-      >
-        El turno es obligatorio.
-      </small>
+    <div *ngIf="hasSubmitted && shift.invalid" class="error">
+      <small>El turno es obligatorio.</small>
     </div>
 
     <!-- Teléfono -->
@@ -135,14 +120,9 @@
       required
       pattern="^\d{3}-\d{3}-\d{3}$"
     />
-    <div class="error-message-container">
-      <small
-        class="error-message"
-        *ngIf="phone.invalid && (phone.touched || showErrors)"
-      >
-        <span *ngIf="phone.errors?.['required']">El teléfono es obligatorio.</span>
-        <span *ngIf="phone.errors?.['pattern']">Formato inválido. Ej.: 123-456-789</span>
-      </small>
+    <div *ngIf="hasSubmitted && phone.invalid" class="error">
+      <small *ngIf="phone.errors?.['required']">El teléfono es obligatorio.</small>
+      <small *ngIf="phone.errors?.['pattern']">Formato inválido. Ej.: 123-456-789</small>
     </div>
 
     <!-- Botón de registro -->

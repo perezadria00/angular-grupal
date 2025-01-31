@@ -1,33 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { DataService } from '../services/data.service';
-import { Enfermero } from '../models/enfermeros.model';
 
 @Component({
   selector: 'app-listado-enfermeros',
-  templateUrl: './listado-enfermeros.component.html',
-  styleUrls: ['./listado-enfermeros.component.css'],
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule],
+  templateUrl: './listado-enfermeros.component.html',
+  styleUrls: ['./listado-enfermeros.component.css']
 })
 export class ListadoEnfermerosComponent implements OnInit {
-  enfermeros: Enfermero[] = []; 
-  errorMessage: string = ''; 
+  enfermeros: Array<{
+    id: number;
+    username: string;
+    name: string;
+    surname: string;
+    email: string;
+    speciality: string;
+    shift: string;
+    phone: string;
+  }> = [];
+  errorMessage: string = '';
+
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.fetchEnfermeros();
+    this.cargarEnfermeros();
   }
 
-  fetchEnfermeros(): void {
+  cargarEnfermeros(): void {
     this.dataService.getData().subscribe(
-      (data: Enfermero[]) => {
-        this.enfermeros = data; // Asignar directamente los datos si coinciden con el modelo
+      (data) => {
+        if (data.length > 0) {
+          this.enfermeros = data;
+        } else {
+          this.errorMessage = 'No se encontraron enfermeros registrados.';
+        }
       },
       (error) => {
-        console.error('Error al obtener los datos de enfermeros:', error);
-        this.errorMessage = 'No se pudo cargar la lista de enfermeros.';
+        console.error('Error al obtener la lista de enfermeros:', error);
+        this.errorMessage = 'Error al conectar con el servidor.';
       }
     );
   }

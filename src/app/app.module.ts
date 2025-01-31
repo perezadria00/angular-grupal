@@ -22,6 +22,7 @@ import { NurseRegisterComponent } from './nurse-register/nurse-register.componen
     FormsModule,
     HttpClientModule,
     NurseLoginComponent,
+    NurseRegisterComponent,
     ListadoEnfermerosComponent,
     SearchNursesComponent
   ],

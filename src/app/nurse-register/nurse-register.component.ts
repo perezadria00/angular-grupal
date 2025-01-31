@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { Enfermero } from '../models/enfermeros.model';
 
 @Component({
   selector: 'app-nurse-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './nurse-register.component.html',
   styleUrls: ['./nurse-register.component.css'],
 })
 export class NurseRegisterComponent {
   formData = {
     username: '',
+    email: '',
     password: '',
     name: '',
     surname: '',
@@ -22,35 +22,32 @@ export class NurseRegisterComponent {
     shift: '',
     phone: '',
   };
+
   successMessage: string = '';
   errorMessage: string = '';
-  showErrors: boolean = false; // Nueva variable para mostrar errores
+  hasSubmitted: boolean = false;
 
   constructor(private dataService: DataService, private router: Router) {}
 
-  onSubmit(form: any) {
-    if (form.invalid) {
-      this.showErrors = true; // Muestra los errores si el formulario es inválido
+  onSubmit() {
+    this.hasSubmitted = true;
+
+    // Validar formato de teléfono
+    if (!this.formData.phone.match(/^\d{3}-\d{3}-\d{3}$/)) {
+      this.errorMessage = 'Formato de teléfono inválido. Ej.: 123-456-789.';
+      this.successMessage = '';
       return;
     }
 
-    const userPayload: Partial<Enfermero> = {
-      username: this.formData.username,
-      password: this.formData.password,
-      name: this.formData.name,
-      surname: this.formData.surname,
-      speciality: this.formData.speciality,
-      shift: this.formData.shift,
-      phone: this.formData.phone,
-    };
-
-    this.dataService.addUser(userPayload).subscribe(
+    // Llamar al servicio para registrar el usuario
+    this.dataService.addUser(this.formData).subscribe(
       (response) => {
         if (response.status === 'success') {
           this.successMessage = response.message || 'Registro exitoso.';
           this.errorMessage = '';
           this.formData = {
             username: '',
+            email: '',
             password: '',
             name: '',
             surname: '',
@@ -58,7 +55,7 @@ export class NurseRegisterComponent {
             shift: '',
             phone: '',
           };
-          setTimeout(() => this.router.navigate(['/login']), 2000);
+          setTimeout(() => this.router.navigate(['/nurse-login']), 2000);
         } else {
           this.successMessage = '';
           this.errorMessage = response.message || 'Error en el registro.';

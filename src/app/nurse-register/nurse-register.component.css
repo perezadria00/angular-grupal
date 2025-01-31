@@ -9,58 +9,66 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f4f4f4;
+  background-color: #f9f9f9;
   font-family: Arial, sans-serif;
 }
 
-.form-box {
+/* CONTENEDOR DEL FORMULARIO */
+.register-form {
   background-color: #ffffff;
-  padding: 20px;
+  padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 400px; /* Incrementado para mayor estabilidad */
-  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 450px;
+  max-width: 90%;
 }
 
-.form {
-  text-align: center;
-}
-
+/* TÍTULO */
 h2 {
   margin-bottom: 20px;
-  font-size: 40px;
+  font-size: 32px;
   color: #4caf50;
+  text-align: center;
 }
 
-h1 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
-}
-
+/* ETIQUETAS */
 label {
   font-size: 14px;
   color: #333;
   font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
 }
 
+/* CAMPOS DE ENTRADA */
 input[type="text"],
+input[type="email"],
 input[type="tel"],
 select,
 input[type="password"] {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
 }
 
-input[type="text"]::placeholder,
-input[type="password"]::placeholder {
+/* PLACEHOLDERS */
+input::placeholder {
   color: #aaa;
 }
 
+/* MENSAJES DE ERROR */
+.error {
+  font-size: 16px; /* Aumentado para mayor visibilidad */
+  color: red;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* BOTÓN DE REGISTRO */
 button {
   width: 100%;
   padding: 12px;
@@ -77,40 +85,25 @@ button:hover {
   background-color: #45a049;
 }
 
-:host .message {
+/* MENSAJES DE ÉXITO Y ERROR */
+.message-container {
   margin-top: 20px;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 16px; /* Aumentado para mayor visibilidad */
   text-align: center;
-  width: 100%;
-  display: inline-block;
 }
 
-:host .message.error {
-  color: #f44336;
-}
-
-:host .message.success {
-  color: #4caf50;
-}
-
-.success {
+.message-container.success {
   color: green;
 }
 
-.error-message-container {
-  height: 20px; /* Reserva espacio para el mensaje */
-  margin-top: -5px;
-  margin-bottom: 10px;
-}
-
-.error-message {
-  font-size: 12px;
+.message-container.error {
   color: red;
-  visibility: hidden; /* Oculta los mensajes inicialmente */
 }
 
-.error-message.active {
-  visibility: visible; /* Muestra el mensaje si es activo */
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .register-form {
+    width: 100%;
+    padding: 20px;
+  }
 }
-

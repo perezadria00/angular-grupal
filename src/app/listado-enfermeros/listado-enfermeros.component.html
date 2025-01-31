@@ -1,13 +1,20 @@
 <div class="container">
   <h2>Listado de Enfermeros</h2>
-  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-  <table *ngIf="enfermeros.length > 0" border="1" style="width: 100%; border-collapse: collapse;">
+
+  <!-- Mensaje de error -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Tabla de enfermeros -->
+  <table *ngIf="enfermeros.length > 0">
     <thead>
       <tr>
         <th>ID</th>
+        <th>Usuario</th>
         <th>Nombre</th>
         <th>Apellido</th>
-        <th>Usuario</th>
+        <th>Email</th>
         <th>Especialidad</th>
         <th>Turno</th>
         <th>Teléfono</th>
@@ -16,9 +23,10 @@
     <tbody>
       <tr *ngFor="let enfermero of enfermeros">
         <td>{{ enfermero.id }}</td>
+        <td>{{ enfermero.username }}</td>
         <td>{{ enfermero.name }}</td>
         <td>{{ enfermero.surname }}</td>
-        <td>{{ enfermero.username }}</td>
+        <td>{{ enfermero.email }}</td>
         <td>{{ enfermero.speciality }}</td>
         <td>{{ enfermero.shift }}</td>
         <td>{{ enfermero.phone }}</td>

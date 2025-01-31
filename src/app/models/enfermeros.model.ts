@@ -7,5 +7,6 @@ export interface Enfermero {
   speciality: string;
   shift: string;
   phone: string;
+  email: string;
   profileImage?: string; 
 }
