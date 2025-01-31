@@ -7,11 +7,12 @@
       <!-- Información del perfil -->
       <div class="profile-info">
         <p><strong>Nombre:</strong> {{ name || 'Not provided' }}</p>
+        <p><strong>Apellido:</strong> {{ surname || 'Not provided' }}</p>
+        <p><strong>Email:</strong> {{ email || 'Not provided' }}</p>
+        <p><strong>Usuario:</strong> {{ username || 'Not provided' }}</p>
         <p><strong>Especialidad:</strong> {{ speciality || 'Not provided' }}</p>
         <p><strong>Turno:</strong> {{ shift || 'Not provided' }}</p>
-        <p><strong>Teléfono:</strong> {{ phone_number || 'Not provided' }}</p>
-        <p><strong>Usuario:</strong> {{ username || 'Not provided' }}</p>
-        <p><strong>Email:</strong> {{ email || 'Not provided' }}</p>
+        <p><strong>Teléfono:</strong> {{ phone || 'Not provided' }}</p>
       </div>
 
       <!-- Imagen del perfil -->
@@ -22,6 +23,56 @@
           (error)="imgPerfil = 'assets/images/prueba.jpg'" 
         />
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-container">
+  <div class="profile-container">
+    <div class="page-container">
+      <!-- Formulario de edición -->
+    <div class="edit-profile-form">
+      <h2>Editar perfil</h2>
+      <form (ngSubmit)="updateProfile()">
+        <div>
+          <label for="name"><Strong>Nombre:</Strong></label>
+          <input type="text" id="name" [(ngModel)]="editableProfile.name" name="name" required>
+        </div>
+        <div>
+          <label for="surname"><Strong>Apellido:</Strong></label>
+          <input type="text" id="surname" [(ngModel)]="editableProfile.surname" name="surname" required>
+        </div>
+        <div>
+          <label for="email"><strong>Email:</strong></label>
+          <input type="email" id="email" [(ngModel)]="editableProfile.email" name="email" required>
+        </div>
+        <div>
+          <label for="username"><strong>Usuario:</strong></label>
+          <input type="text" id="username" [(ngModel)]="editableProfile.username" name="username" required>
+        </div>
+        <div>
+          <label for="password"><strong>Contraseña:</strong></label>
+          <input type="password" id="password" [(ngModel)]="editableProfile.password" name="password" required>
+        </div>
+        <div>
+          <label for="speciality"><strong>Especialidad:</strong></label>
+          <input type="text" id="speciality" [(ngModel)]="editableProfile.speciality" name="speciality" required>
+        </div>
+        <div>
+          <label for="shift"><strong>Turno:</strong></label>
+          <select id="shift" [(ngModel)]="editableProfile.shift" name="shift" required>
+            <option value="" disabled>Selecciona un turno</option>
+            <option value="Mañana">Mañana</option>
+            <option value="Tarde">Tarde</option>
+            <option value="Noche">Noche</option>
+          </select>
+        </div>
+        <div>
+          <label for="phone"><strong>Teléfono:</strong></label>
+          <input type="text" id="phone" [(ngModel)]="editableProfile.phone" name="phone" required>
+        </div>
+        <button type="text" type="submit">Guardar Cambios</button>
+      </form>
     </div>
   </div>
 </div>

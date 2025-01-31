@@ -11,10 +11,11 @@ import { NurseLoginComponent } from './nurse-login/nurse-login.component';
 import { ListadoEnfermerosComponent } from './listado-enfermeros/listado-enfermeros.component';
 import { SearchNursesComponent } from './search-nurses/search-nurses.component';
 import { NurseRegisterComponent } from './nurse-register/nurse-register.component';
+import { NurseProfileComponent } from './nurse-profile/nurse-profile.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +25,8 @@ import { NurseRegisterComponent } from './nurse-register/nurse-register.componen
     NurseLoginComponent,
     NurseRegisterComponent,
     ListadoEnfermerosComponent,
-    SearchNursesComponent
+    SearchNursesComponent,
+    NurseProfileComponent
   ],
   bootstrap: [AppComponent]
 })

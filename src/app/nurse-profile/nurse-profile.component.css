@@ -58,3 +58,46 @@
   border-radius: 8px; /* Bordes redondeados para la imagen */
   border: 1px solid #ccc;
 }
+
+
+input[type="text"],
+[type="password"],
+[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+select {
+  width: 103%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+input[type="text"]::placeholder {
+  color: #aaa;
+}
+
+
+button {
+  width: 103%;
+  padding: 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+button:hover {
+  background-color: #45a049; 
+}

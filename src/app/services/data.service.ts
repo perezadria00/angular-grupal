@@ -95,5 +95,31 @@ addUser(user: Partial<Enfermero>): Observable<{ status: string; message?: string
       return of(null); // Devuelve null si no hay usuario logueado
     }
   }
+
+  updateProfile(updatedProfile: any): Observable<any> {
+    if (!this.loggedInUser) {
+      console.error('No hay un usuario autenticado para actualizar');
+      return throwError(() => new Error('No hay un usuario autenticado'));
+    }
+  
+    //const url = `${this.dataUrl}/update/${this.loggedInUser.username}`; 
+    const url = `${this.dataUrl}/${this.loggedInUser.id}/edit`; // Ajusta el endpoint según tu backend
+    return this.http.put(url, updatedProfile).pipe(
+      map((response: any) => {
+        if (response.status === 'success') {
+          this.loggedInUser = { ...this.loggedInUser, ...updatedProfile }; // Actualiza los datos en la variable local
+          return response;
+        } else {
+          console.error('Error al actualizar el perfil:', response);
+          throw new Error('Error en la actualización');
+        }
+      }),
+      catchError((error) => {
+        console.error('Error en la petición de actualización:', error);
+        return throwError(() => new Error('Error en la actualización del perfil'));
+      })
+    );
+  }
+  
 }
 

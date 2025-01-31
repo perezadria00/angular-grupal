@@ -5,6 +5,14 @@
   box-sizing: border-box;
 }
 
+/* Título */
+h2 {
+  text-align: center;
+  color: #4CAF50;
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
 
 :host {
   display: flex;

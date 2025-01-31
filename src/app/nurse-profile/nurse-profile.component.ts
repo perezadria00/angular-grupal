@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -6,15 +8,36 @@ import { DataService } from '../services/data.service';
   standalone: true,
   templateUrl: './nurse-profile.component.html',
   styleUrls: ['./nurse-profile.component.css'],
+  imports: [CommonModule, FormsModule]
 })
 export class NurseProfileComponent implements OnInit {
   name: string = '';
+  surname: string = '';
+  password: string = '';
   speciality: string = '';
   shift: string = '';
-  phone_number: string = '';
+  phone: string = '';
   username: string = '';
   email: string = '';
   imgPerfil: string = ''; // Nueva variable para la imagen
+
+  editableProfile = {
+    name: '',
+    surname: '',
+    email: '',
+    username: '',
+    password: '',
+    speciality: '',
+    shift: '',
+    phone: '',
+  };
+
+  userImages: { [key: string]: string } = {
+    ajimenez: 'assets/images/foto1.png',
+    mrodriguez: 'assets/images/foto3.png',
+    lgarcia: 'assets/images/foto4.png',
+    jperez: 'assets/images/foto2.png',
+  };
 
   constructor(private dataService: DataService) {}
 
@@ -27,19 +50,49 @@ export class NurseProfileComponent implements OnInit {
       (profile) => {
         console.log('Perfil recibido:', profile); // Imprime el perfil completo en la consola
         if (profile) {
-          this.name = profile.nombre;
-          this.speciality = profile.especialidad;
-          this.shift = profile.turno;
-          this.phone_number = profile.telefono;
-          this.username = profile.username;
+          this.name = profile.name;
+          this.surname = profile.surname;
           this.email = profile.email;
-          this.imgPerfil = profile['img-perfil'] || 'assets/images/prueba.jpg'; // Imagen por defecto
+          this.username = profile.username;
+          this.password = profile.password;
+          this.speciality = profile.speciality;
+          this.shift = profile.shift;
+          this.phone = profile.phone;
+          this.imgPerfil = this.userImages[profile.username] || 'assets/images/prueba.jpg'; // Imagen por defecto
+
+          // Inicializar el formulario de edición con los datos actuales
+          this.editableProfile = {
+            name: profile.name,
+            surname: profile.surname,
+            email: profile.email,
+            username: profile.username,
+            password: profile.password,
+            speciality: profile.speciality,
+            shift: profile.shift,
+            phone: profile.phone
+          };
         } else {
           console.error('No hay un usuario autenticado.');
         }
       },
       (error) => {
         console.error('Error al obtener los datos del perfil:', error);
+      }
+    );
+  }
+
+  updateProfile() {
+    this.dataService.updateProfile(this.editableProfile).subscribe(
+      (response) => {
+        console.log('Perfil actualizado con éxito', response);
+        alert('Perfil actualizado correctamente');
+
+        // Actualizar los datos mostrados en la interfaz
+        this.fetchProfileData();
+      },
+      (error) => {
+        console.error('Error al actualizar el perfil:', error);
+        alert('Error al actualizar el perfil');
       }
     );
   }
