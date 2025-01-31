@@ -13,31 +13,33 @@
   font-family: Arial, sans-serif;
 }
 
-/* CONTENEDOR DEL FORMULARIO */
+/* CONTENEDOR PRINCIPAL DEL FORMULARIO */
 .register-form {
   background-color: #ffffff;
-  padding: 30px;
+  padding: 40px; /* Incrementa el padding para dar más espacio */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 450px;
+  width: 600px; /* Similar al ancho del contenedor de perfil */
   max-width: 90%;
+  margin: 20px auto; /* Centra el formulario en la pantalla */
 }
 
 /* TÍTULO */
 h2 {
-  margin-bottom: 20px;
-  font-size: 32px;
+  margin-bottom: 30px;
+  font-size: 28px;
   color: #4caf50;
   text-align: center;
+  font-weight: bold;
 }
 
 /* ETIQUETAS */
 label {
-  font-size: 14px;
+  font-size: 16px; /* Más grande para mejor legibilidad */
   color: #333;
   font-weight: bold;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 /* CAMPOS DE ENTRADA */
@@ -47,11 +49,11 @@ input[type="tel"],
 select,
 input[type="password"] {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
+  padding: 12px; /* Ajusta el padding para mejor consistencia */
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 16px; /* Más grande para mejor legibilidad */
 }
 
 /* PLACEHOLDERS */
@@ -61,22 +63,22 @@ input::placeholder {
 
 /* MENSAJES DE ERROR */
 .error {
-  font-size: 16px; /* Aumentado para mayor visibilidad */
+  font-size: 16px;
   color: red;
-  margin-top: -10px;
-  margin-bottom: 10px;
+  margin-top: -5px;
+  margin-bottom: 15px;
   text-align: left;
 }
 
 /* BOTÓN DE REGISTRO */
 button {
   width: 100%;
-  padding: 12px;
+  padding: 15px;
   background-color: #4caf50;
   color: white;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 8px;
+  font-size: 18px; /* Incrementa el tamaño para un diseño más moderno */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -88,8 +90,9 @@ button:hover {
 /* MENSAJES DE ÉXITO Y ERROR */
 .message-container {
   margin-top: 20px;
-  font-size: 16px; /* Aumentado para mayor visibilidad */
+  font-size: 18px; /* Aumentado para mayor visibilidad */
   text-align: center;
+  font-weight: bold;
 }
 
 .message-container.success {
@@ -104,6 +107,32 @@ button:hover {
 @media (max-width: 768px) {
   .register-form {
     width: 100%;
-    padding: 20px;
+    padding: 30px; /* Reduce el padding para dispositivos pequeños */
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  input[type="password"] {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  button {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .message-container {
+    font-size: 16px;
   }
 }

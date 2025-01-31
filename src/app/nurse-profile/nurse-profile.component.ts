@@ -2,15 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nurse-profile',
   standalone: true,
   templateUrl: './nurse-profile.component.html',
   styleUrls: ['./nurse-profile.component.css'],
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule],
 })
 export class NurseProfileComponent implements OnInit {
+  id: number | null = null; // Almacena el ID del usuario
   name: string = '';
   surname: string = '';
   password: string = '';
@@ -19,7 +21,7 @@ export class NurseProfileComponent implements OnInit {
   phone: string = '';
   username: string = '';
   email: string = '';
-  imgPerfil: string = ''; // Nueva variable para la imagen
+  imgPerfil: string = ''; // Imagen predeterminada
 
   editableProfile = {
     name: '',
@@ -32,14 +34,10 @@ export class NurseProfileComponent implements OnInit {
     phone: '',
   };
 
-  userImages: { [key: string]: string } = {
-    ajimenez: 'assets/images/foto1.png',
-    mrodriguez: 'assets/images/foto3.png',
-    lgarcia: 'assets/images/foto4.png',
-    jperez: 'assets/images/foto2.png',
-  };
+  successMessage: string = ''; // Mensaje de éxito
+  errorMessage: string = ''; // Mensaje de error
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   ngOnInit() {
     this.fetchProfileData();
@@ -48,8 +46,9 @@ export class NurseProfileComponent implements OnInit {
   fetchProfileData() {
     this.dataService.getProfile().subscribe(
       (profile) => {
-        console.log('Perfil recibido:', profile); // Imprime el perfil completo en la consola
         if (profile) {
+          console.log('Perfil recibido:', profile);
+          this.id = profile.id; // Almacena el ID del usuario
           this.name = profile.name;
           this.surname = profile.surname;
           this.email = profile.email;
@@ -58,7 +57,7 @@ export class NurseProfileComponent implements OnInit {
           this.speciality = profile.speciality;
           this.shift = profile.shift;
           this.phone = profile.phone;
-          this.imgPerfil = this.userImages[profile.username] || 'assets/images/prueba.jpg'; // Imagen por defecto
+          this.imgPerfil = 'assets/images/prueba.jpg'; // Imagen predeterminada
 
           // Inicializar el formulario de edición con los datos actuales
           this.editableProfile = {
@@ -69,33 +68,74 @@ export class NurseProfileComponent implements OnInit {
             password: profile.password,
             speciality: profile.speciality,
             shift: profile.shift,
-            phone: profile.phone
+            phone: profile.phone,
           };
         } else {
-          console.error('No hay un usuario autenticado.');
+          console.error('No se encontró el perfil del usuario.');
         }
       },
       (error) => {
-        console.error('Error al obtener los datos del perfil:', error);
+        console.error('Error al obtener el perfil del usuario:', error);
       }
     );
   }
 
   updateProfile() {
-    this.dataService.updateProfile(this.editableProfile).subscribe(
+    if (this.id === null) {
+      alert('No se puede actualizar el perfil. Falta el ID del usuario.');
+      return;
+    }
+  
+    this.dataService.updateProfile(this.id, this.editableProfile).subscribe(
       (response) => {
-        console.log('Perfil actualizado con éxito', response);
-        alert('Perfil actualizado correctamente');
-
-        // Actualizar los datos mostrados en la interfaz
-        this.fetchProfileData();
+        console.log('Perfil actualizado correctamente', response);
+  
+        // Actualizar los datos mostrados en el contenedor superior
+        this.name = this.editableProfile.name;
+        this.surname = this.editableProfile.surname;
+        this.email = this.editableProfile.email;
+        this.username = this.editableProfile.username;
+        this.password = this.editableProfile.password;
+        this.speciality = this.editableProfile.speciality;
+        this.shift = this.editableProfile.shift;
+        this.phone = this.editableProfile.phone;
+  
+        this.successMessage = 'Perfil actualizado correctamente.';
+        setTimeout(() => (this.successMessage = ''), 3000); // Ocultar el mensaje después de 3 segundos
       },
       (error) => {
         console.error('Error al actualizar el perfil:', error);
-        alert('Error al actualizar el perfil');
+        this.errorMessage = 'Error al actualizar el perfil.';
+        setTimeout(() => (this.errorMessage = ''), 3000); // Ocultar el mensaje después de 3 segundos
       }
     );
   }
   
-}
+  deleteAccount() {
+    if (this.id === null) {
+      alert('No se puede eliminar la cuenta. Falta el ID del usuario.');
+      return;
+    }
 
+    // Mostrar mensaje de confirmación antes de eliminar
+    const confirmDelete = confirm(
+      '¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.'
+    );
+
+    if (!confirmDelete) {
+      return; // Salir si el usuario cancela la eliminación
+    }
+
+    this.dataService.deleteUser(this.id).subscribe(
+      (response) => {
+        console.log('Cuenta eliminada correctamente:', response);
+        alert('Cuenta eliminada correctamente.');
+        this.router.navigate(['/']); // Redirige a la página principal después de eliminar
+      },
+      (error) => {
+        console.error('Error al eliminar la cuenta:', error);
+        alert('Error al eliminar la cuenta.');
+      }
+    );
+  }
+}
